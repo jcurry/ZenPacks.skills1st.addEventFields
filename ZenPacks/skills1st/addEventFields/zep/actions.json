@@ -1,0 +1,53 @@
+{
+    "triggers": [
+        {
+            "name": "Skills1_test",
+            "uuid": "24d4c246-78b9-4f10-9347-6fd47a314619",
+            "enabled": true,
+            "rule": {
+                "api_version": 1,
+                "source": "(evt.event_class.startswith(\"/Test\")) and (evt.status == 0) and (evt.severity > 2)",
+                "type": 1
+            }
+        },
+        {
+            "name": "Skills1_email_test",
+            "uuid": "aff4d854-5839-4390-99f7-36cd7fe7ad57",
+            "enabled": true,
+            "rule": {
+                "api_version": 1,
+                "source": "(evt.event_class.startswith(\"/Test\")) and (evt.status == 0) and (evt.severity > 2)",
+                "type": 1
+            }
+        }
+    ],
+    "notifications": [
+        {
+            "id": "skills1_test_command",
+            "description": "Skills1 test command .",
+            "guid": "5a748abc-5ab2-4149-af56-1a4d7c6063eb",
+            "action": "command",
+            "enabled": true,
+            "action_timeout": 60,
+            "delay_seconds": 0,
+            "repeat_seconds": 0,
+            "send_initial_occurrence": false,
+            "send_clear": false,
+            "body_format": "echo skills1 field is ${evt/skills1} and summary is ${evt/summary} >> /tmp/skills_zep_test",
+            "clear_body_format": "",
+            "subscriptions": ["24d4c246-78b9-4f10-9347-6fd47a314619"]
+        },
+        {
+            "id": "skills1_email_test_command",
+            "description": "Skills1 email test command .",
+            "guid": "501bfc59-9bb0-4b96-a635-5ccd44102e32",
+            "action": "email",
+            "enabled": true,
+            "delay_seconds": 120,
+            "repeat_seconds": 0,
+            "send_initial_occurrence": true,
+            "send_clear": true,
+            "subscriptions": ["aff4d854-5839-4390-99f7-36cd7fe7ad57"]
+        }
+    ]
+}
